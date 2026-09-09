@@ -1,0 +1,10 @@
+{
+  "include": [
+    "gem-compliance-checker"
+  ],
+  "extraPaths": [
+    "gem-compliance-checker"
+  ],
+  "venvPath": ".",
+  "venv": ".venv"
+}

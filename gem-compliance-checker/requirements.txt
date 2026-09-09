@@ -1,0 +1,27 @@
+# Core API & Web Framework
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+pydantic-settings==2.7.0
+
+# Frontend Evaluation UI
+streamlit==1.41.1
+pandas>=2.0.0
+
+# Document Ingestion & OCR
+pymupdf==1.25.1
+pytesseract==0.3.13
+pillow==11.1.0
+
+# HTTP & API Clients
+requests==2.32.3
+httpx==0.28.1
+
+# Configuration & Utilities
+python-dotenv==1.0.1
+python-multipart==0.0.20
+
+# Optional LLM SDKs (for future full model integration)
+# google-genai==0.1.1
+# openai==1.58.1
+# anthropic==0.42.0

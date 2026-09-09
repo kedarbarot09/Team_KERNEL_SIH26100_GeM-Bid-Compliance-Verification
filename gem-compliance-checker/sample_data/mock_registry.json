@@ -1,0 +1,147 @@
+{
+  "entities": [
+    {
+      "entity_id": "ENT-001",
+      "company_name": "Alpha Tech Solutions Private Limited",
+      "pan_details": {
+        "pan": "AABCA1234F",
+        "registered_name": "ALPHA TECH SOLUTIONS PRIVATE LIMITED",
+        "status": "ACTIVE",
+        "category": "Company",
+        "date_of_incorporation": "2018-04-12"
+      },
+      "gstin_details": {
+        "gstin": "27AABCA1234F1Z5",
+        "legal_name": "ALPHA TECH SOLUTIONS PRIVATE LIMITED",
+        "trade_name": "Alpha Tech Solutions",
+        "status": "ACTIVE",
+        "state_code": "27",
+        "state_name": "Maharashtra",
+        "taxpayer_type": "Regular",
+        "filing_status": "UP_TO_DATE"
+      },
+      "udyam_details": {
+        "udyam_registration_number": "UDYAM-MH-01-0012345",
+        "enterprise_name": "ALPHA TECH SOLUTIONS PRIVATE LIMITED",
+        "enterprise_type": "Micro",
+        "major_activity": "Manufacturing",
+        "status": "ACTIVE",
+        "registration_date": "2020-08-15",
+        "valid_until": "PERPETUAL"
+      },
+      "financial_records": {
+        "currency": "INR_LAKHS",
+        "turnover_fy_2021_22": 45.0,
+        "turnover_fy_2022_23": 55.0,
+        "turnover_fy_2023_24": 65.0,
+        "average_annual_turnover": 55.0
+      },
+      "past_experience": {
+        "years_in_business": 6,
+        "completed_govt_orders": 14,
+        "total_order_value_lakhs": 120.0
+      },
+      "debarment_status": {
+        "is_blacklisted": false,
+        "incident_count": 0,
+        "last_audit_date": "2024-01-10"
+      }
+    },
+    {
+      "entity_id": "ENT-002",
+      "company_name": "Beta Infra Projects Limited",
+      "pan_details": {
+        "pan": "AAACB5678K",
+        "registered_name": "BETA INFRA PROJECTS LIMITED",
+        "status": "ACTIVE",
+        "category": "Company",
+        "date_of_incorporation": "2021-09-20"
+      },
+      "gstin_details": {
+        "gstin": "07AAACB5678K1Z2",
+        "legal_name": "BETA INFRA PROJECTS LIMITED",
+        "trade_name": "Beta Infra Projects",
+        "status": "SUSPENDED",
+        "state_code": "07",
+        "state_name": "Delhi",
+        "taxpayer_type": "Regular",
+        "filing_status": "OVERDUE_RETURNS",
+        "suspension_reason": "Non-filing of GSTR-3B for continuous 6 months"
+      },
+      "udyam_details": {
+        "udyam_registration_number": "UDYAM-DL-02-0054321",
+        "enterprise_name": "BETA INFRA PROJECTS LIMITED",
+        "enterprise_type": "Small",
+        "major_activity": "Services",
+        "status": "EXPIRED",
+        "registration_date": "2021-10-01",
+        "valid_until": "2023-03-31",
+        "expiry_reason": "Mandatory annual re-declaration pending on portal"
+      },
+      "financial_records": {
+        "currency": "INR_LAKHS",
+        "turnover_fy_2021_22": 12.0,
+        "turnover_fy_2022_23": 15.0,
+        "turnover_fy_2023_24": 14.0,
+        "average_annual_turnover": 13.67
+      },
+      "past_experience": {
+        "years_in_business": 3,
+        "completed_govt_orders": 2,
+        "total_order_value_lakhs": 18.5
+      },
+      "debarment_status": {
+        "is_blacklisted": false,
+        "incident_count": 1,
+        "warning_issued": "Delay in milestone execution under GeM Bid #GEM/2023/B/8912",
+        "last_audit_date": "2023-11-20"
+      }
+    },
+    {
+      "entity_id": "ENT-003",
+      "company_name": "Gamma Fraudulent Trading Co",
+      "pan_details": {
+        "pan": "XYZPG9999Z",
+        "registered_name": "GAMMA TRADING AND SUPPLIES",
+        "status": "CANCELLED",
+        "category": "Proprietorship",
+        "cancellation_reason": "Irregular identity documentation provided"
+      },
+      "gstin_details": {
+        "gstin": "06XYZPG9999Z1ZX",
+        "legal_name": "GAMMA TRADING AND SUPPLIES",
+        "trade_name": "Gamma Trading",
+        "status": "CANCELLED_SUO_MOTO",
+        "state_code": "06",
+        "state_name": "Haryana",
+        "taxpayer_type": "Regular",
+        "filing_status": "CANCELLED",
+        "suspension_reason": "Identified under circular trading & fake invoicing probe"
+      },
+      "udyam_details": {
+        "udyam_registration_number": "UDYAM-HR-03-0099999",
+        "enterprise_name": "GAMMA TRADING",
+        "status": "NOT_FOUND",
+        "remarks": "Registration number does not exist in national Udyam database"
+      },
+      "financial_records": {
+        "currency": "INR_LAKHS",
+        "turnover_fy_2021_22": 0.0,
+        "turnover_fy_2022_23": 0.0,
+        "turnover_fy_2023_24": 0.0,
+        "average_annual_turnover": 0.0
+      },
+      "past_experience": {
+        "years_in_business": 1,
+        "completed_govt_orders": 0,
+        "total_order_value_lakhs": 0.0
+      },
+      "debarment_status": {
+        "is_blacklisted": true,
+        "debarment_period": "2024-2027",
+        "banned_by": "Government e-Marketplace (GeM) Incident Management Cell",
+        "reason": "Submission of forged bank guarantee and counterfeit certifications"
+      }
+    }
+  ]
+}

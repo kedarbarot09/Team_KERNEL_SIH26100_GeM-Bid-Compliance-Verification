@@ -1,0 +1,80 @@
+================================================================================
+                    GOVERNMENT E-MARKETPLACE (GeM) BID SUBMISSION
+================================================================================
+BID NUMBER: GEM/2024/B/4568912
+DATED: 15-08-2024
+ITEM DESCRIPTION: Supply and Maintenance of High-Performance Computing Workstations
+PROCURING ENTITY: National Informatics Centre Services Inc. (NICSI), New Delhi
+
+--------------------------------------------------------------------------------
+1. BIDDER IDENTIFICATION & PROFILE
+--------------------------------------------------------------------------------
+Legal Business Name: Alpha Tech Solutions Private Limited
+Registered Office: 402-404, Technopark Plaza, MIDC Andheri (East), Mumbai, MH - 400093
+Corporate Identification Number (CIN): U72200MH2018PTC308912
+Permanent Account Number (PAN): AABCA1234F
+Goods and Services Tax Identification Number (GSTIN): 27AABCA1234F1Z5
+Authorized Signatory: Rajesh V. Sharma (Managing Director)
+Contact Email: gem-bids@alphatechsolutions.in
+Contact Phone: +91-22-28349000
+
+--------------------------------------------------------------------------------
+2. STATUTORY REGISTRATIONS & MSME / UDYAM STATUS
+--------------------------------------------------------------------------------
+MSME Registration Type: Micro Enterprise (Manufacturing)
+Udyam Registration Number: UDYAM-MH-01-0012345
+Udyam Date of Issue: 15-08-2020
+Validity: Valid & Active (Perpetual subject to annual IT return filing)
+Earnest Money Deposit (EMD) Status:
+  - Claiming Exemption: YES
+  - Grounds for Exemption: Valid Udyam Registration as Micro Enterprise under
+    Public Procurement Policy for Micro and Small Enterprises (MSEs) Order, 2012.
+
+--------------------------------------------------------------------------------
+3. FINANCIAL CAPABILITY & TURNOVER DECLARATION
+--------------------------------------------------------------------------------
+Chartered Accountant Certified Turnover (CA M/s K. Mehta & Co., Mem No. 048123):
+  - Financial Year 2021-2022: INR 45.00 Lakhs
+  - Financial Year 2022-2023: INR 55.00 Lakhs
+  - Financial Year 2023-2024: INR 65.00 Lakhs
+  - 3-Year Average Annual Turnover: INR 55.00 Lakhs
+Tender Requirement: Minimum 30.00 Lakhs average turnover (Complied).
+
+--------------------------------------------------------------------------------
+4. PAST PERFORMANCE & TECHNICAL EXPERIENCE
+--------------------------------------------------------------------------------
+Total Years of Relevant Experience: 6 Years (Incorporated in 2018)
+Major Government Contracts Successfully Completed:
+  1. Ministry of Electronics & IT - 25 High-End Desktops (PO# MEITY/2022/PO-104)
+  2. Maharashtra State Data Centre - Network Servers (PO# MSDC/2023/892)
+  3. Indian Railways (CR) - Workstation terminals (PO# CR/S&T/2023/441)
+Total Government Supply Orders Delivered: 14 Orders (Value: INR 120.00 Lakhs)
+Tender Requirement: Minimum 2 years past experience with at least 1 similar order.
+
+--------------------------------------------------------------------------------
+5. MAKE IN INDIA (MII) LOCAL CONTENT SELF-DECLARATION
+--------------------------------------------------------------------------------
+Under Ministry of Commerce & Industry Order No. P-45021/2/2017-PP (BE-II):
+  - Local Value Addition / Content Percentage: 68.5%
+  - Supplier Classification: Class-I Local Supplier (>= 50% local content)
+  - Location of Local Manufacturing: MIDC TTC Industrial Area, Navi Mumbai
+  - Verification: We certify that the goods offered comply with the local content
+    threshold specified in the bid document.
+
+--------------------------------------------------------------------------------
+6. INTEGRITY PACT & NON-DEBARMENT UNDERTAKING
+--------------------------------------------------------------------------------
+We hereby solemnly affirm that:
+  - Neither the bidder (Alpha Tech Solutions Private Limited) nor any of its
+    directors have been debarred, blacklisted, or suspended by GeM, Central/State
+    Government Departments, or Public Sector Undertakings as on the bid opening date.
+  - All statutory filings including GST Returns (GSTR-1, GSTR-3B) and Income Tax
+    returns are current and up-to-date.
+  - The particulars provided above are authentic, true, and verifiable on the
+    respective statutory portals.
+
+[Signed and Stamped]
+For Alpha Tech Solutions Private Limited
+Rajesh V. Sharma
+Authorized Signatory
+================================================================================
