@@ -2,7 +2,7 @@
 
 Computes normalized compliance scores (0-100%), applies mandatory disqualification gates,
 calculates risk deductions, and categorizes submissions into:
-- COMPLIANT: Clean submission exceeding criteria (Score >= 80%).
+- COMPLIANT: Clean submission exceeding criteria (Score >= 80% and zero failed clauses).
 - CONDITIONAL: Minor deficiencies or pending secondary proofs (Score 50-79%).
 - DISQUALIFIED: Mandatory clause violation or severe deficiency (Score < 50% or Mandatory Fail).
 """
@@ -42,6 +42,7 @@ class ScoreBreakdown(BaseModel):
     passed_clauses_count: int = Field(..., description="Number of fully passed clauses")
     conditional_clauses_count: int = Field(..., description="Number of conditionally approved clauses")
     failed_clauses_count: int = Field(..., description="Number of failed clauses")
+    not_applicable_clauses_count: int = Field(0, description="Number of waived or not-applicable clauses")
     mandatory_failure_triggered: bool = Field(False, description="Whether an auto-disqualification clause failed")
 
 
@@ -73,6 +74,7 @@ class ScoringEngine:
         - PASS: 100% of clause weight
         - CONDITIONAL: 50% of clause weight
         - FAIL: 0% of clause weight
+        - NOT_APPLICABLE: Excluded from active denominator so non-applicable rules don't penalize.
 
         Args:
             clause_results: List of evaluated ClauseResult objects.
@@ -81,12 +83,19 @@ class ScoringEngine:
             ScoreBreakdown containing points and counts.
         """
         earned = 0.0
+        total_possible = 0.0
         passed_cnt = 0
         conditional_cnt = 0
         failed_cnt = 0
+        na_cnt = 0
         mandatory_fail = False
 
         for clause in clause_results:
+            if clause.status == ClauseStatus.NOT_APPLICABLE:
+                na_cnt += 1
+                continue
+
+            total_possible += clause.weight
             if clause.status == ClauseStatus.PASS:
                 earned += clause.weight
                 passed_cnt += 1
@@ -98,8 +107,11 @@ class ScoringEngine:
                 if clause.is_mandatory:
                     mandatory_fail = True
 
-        # Clamp earned score to 0-100
-        clamped_score = max(0.0, min(100.0, round(earned, 2)))
+        # Normalized percentage
+        if total_possible > 0:
+            clamped_score = max(0.0, min(100.0, round((earned / total_possible) * 100.0, 2)))
+        else:
+            clamped_score = 100.0
 
         return ScoreBreakdown(
             total_possible_score=100.0,
@@ -107,6 +119,7 @@ class ScoringEngine:
             passed_clauses_count=passed_cnt,
             conditional_clauses_count=conditional_cnt,
             failed_clauses_count=failed_cnt,
+            not_applicable_clauses_count=na_cnt,
             mandatory_failure_triggered=mandatory_fail,
         )
 
@@ -165,14 +178,15 @@ class ScoringEngine:
         actions: List[str] = []
         if risk == RiskCategory.COMPLIANT:
             summary = (
-                f"Bidder '{bidder_name}' is fully compliant with all 5 evaluated GeM clauses "
-                f"achieving a score of {breakdown.earned_score:.1f}%. Recommended for Technical Acceptance."
+                f"Bidder '{bidder_name}' achieved a compliance score of {breakdown.earned_score:.1f}% "
+                f"({breakdown.passed_clauses_count} passed, {breakdown.not_applicable_clauses_count} waived). "
+                f"Recommended for Technical Acceptance."
             )
             actions.append("Proceed to Financial Bid Opening.")
         elif risk == RiskCategory.CONDITIONAL:
             summary = (
                 f"Bidder '{bidder_name}' meets minimum criteria with a score of {breakdown.earned_score:.1f}%, "
-                f"but has {breakdown.conditional_clauses_count} conditional clause(s) requiring clarification."
+                f"but has {breakdown.conditional_clauses_count} item(s) requiring clarification."
             )
             for c in clauses:
                 if c.status == ClauseStatus.CONDITIONAL:
@@ -180,12 +194,12 @@ class ScoringEngine:
         else:
             summary = (
                 f"Bidder '{bidder_name}' is DISQUALIFIED with a score of {breakdown.earned_score:.1f}%. "
-                "One or more mandatory statutory or eligibility conditions were violated."
+                "One or more mandatory statutory or technical qualification conditions were violated."
             )
-            actions.append("Issue formal technical rejection letter with deficiency citations.")
+            actions.append("Issue formal technical rejection letter citing non-compliance reasons.")
             for c in clauses:
                 if c.status == ClauseStatus.FAIL:
-                    actions.append(f"Disqualification Ground ({c.clause_name}): {c.remarks}")
+                    actions.append(f"Deficiency ({c.clause_name}): {c.remarks}")
 
         return ComplianceReport(
             report_id=rep_id,

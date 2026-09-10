@@ -1,0 +1,3 @@
+GSTIN: 27AABCA1234F1Z5
+Status: ACTIVE
+Filing Status: UP TO DATE

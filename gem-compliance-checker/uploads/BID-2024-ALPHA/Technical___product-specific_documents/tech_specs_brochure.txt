@@ -1,0 +1,7 @@
+TECHNICAL SPECIFICATION SCHEDULE & PRODUCT BROCHURE
+Tender: Supply of High-Performance Computing Workstations
+Offered Model: ProWorkstation Alpha-900
+Processor: 32-Core Enterprise CPU
+RAM: 128GB ECC DDR5
+Storage: 2TB NVMe PCIe 4.0
+Compliance: Fully compliant with tender technical schedule without deviation.

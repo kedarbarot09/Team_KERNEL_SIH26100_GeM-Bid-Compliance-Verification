@@ -1,0 +1,3 @@
+Udyam Registration Number: UDYAM-MH-01-0012345
+Type: Micro Enterprise
+Status: ACTIVE
