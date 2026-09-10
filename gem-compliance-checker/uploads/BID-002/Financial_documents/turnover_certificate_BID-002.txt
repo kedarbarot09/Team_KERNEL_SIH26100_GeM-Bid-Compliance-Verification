@@ -1,0 +1,11 @@
+CHARTERED ACCOUNTANTS AUDITED TURNOVER CERTIFICATE
+------------------------------------------------------------------
+Client Name: Beta Infra Projects Ltd
+CA Membership Number: 219874
+Unique Document Identification Number (UDIN): INVALID_UDIN_NOT_RESOLVED
+Audited Turnover Records:
+  - Financial Year 2023-24: INR 12.00 Crores (1200.00 Lakhs)
+  - Financial Year 2024-25: INR 8.50 Crores (850.00 Lakhs)
+  - Financial Year 2025-26: INR 10.10 Crores (1010.00 Lakhs)
+Average Annual Turnover (Last 3 FYs): INR 10.20 Crores (1020.00 Lakhs)
+

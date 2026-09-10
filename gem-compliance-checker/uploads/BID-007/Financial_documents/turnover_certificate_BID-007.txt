@@ -1,0 +1,11 @@
+CHARTERED ACCOUNTANTS AUDITED TURNOVER CERTIFICATE
+------------------------------------------------------------------
+Client Name: Kavya Textiles Pvt Ltd
+CA Membership Number: 334455
+Unique Document Identification Number (UDIN): 25334455FFFFFF1122
+Audited Turnover Records:
+  - Financial Year 2023-24: INR 7.20 Crores (720.00 Lakhs)
+  - Financial Year 2024-25: INR 7.80 Crores (780.00 Lakhs)
+  - Financial Year 2025-26: INR 8.50 Crores (850.00 Lakhs)
+Average Annual Turnover (Last 3 FYs): INR 7.83 Crores (783.33 Lakhs)
+

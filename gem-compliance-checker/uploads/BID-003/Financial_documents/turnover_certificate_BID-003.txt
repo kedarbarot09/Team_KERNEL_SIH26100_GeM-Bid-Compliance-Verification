@@ -1,0 +1,11 @@
+CHARTERED ACCOUNTANTS AUDITED TURNOVER CERTIFICATE
+------------------------------------------------------------------
+Client Name: Gamma Trading Corporation
+CA Membership Number: 512489
+Unique Document Identification Number (UDIN): 25512489BBBBBB4321
+Audited Turnover Records:
+  - Financial Year 2023-24: INR 3.80 Crores (380.00 Lakhs)
+  - Financial Year 2024-25: INR 4.10 Crores (410.00 Lakhs)
+  - Financial Year 2025-26: INR 4.50 Crores (450.00 Lakhs)
+Average Annual Turnover (Last 3 FYs): INR 4.13 Crores (413.33 Lakhs)
+

@@ -1,0 +1,19 @@
+{
+  "status": "success",
+  "source": "digilocker",
+  "issuer_verified": true,
+  "issuer": "Ministry of Micro, Small and Medium Enterprises",
+  "issuer_id": "in.gov.msme",
+  "document_type": "Udyam Registration Certificate",
+  "uri": "in.gov.msme.udyam-UDYAM-MH-01-0012345",
+  "date_of_issue": "2020-08-15",
+  "data": {
+    "udyam_registration_number": "UDYAM-MH-01-0012345",
+    "enterprise_name": "ALPHA TECH SOLUTIONS PRIVATE LIMITED",
+    "enterprise_type": "Micro Enterprise",
+    "major_activity": "Manufacturing",
+    "status": "ACTIVE",
+    "commencement_date": "2018-04-12"
+  },
+  "raw_text": "UDYAM REGISTRATION CERTIFICATE\nDigiLocker Verified Credential (URI: in.gov.msme.udyam-UDYAM-MH-01-0012345)\nUdyam Registration Number: UDYAM-MH-01-0012345\nName of Enterprise: ALPHA TECH SOLUTIONS PRIVATE LIMITED\nType: Micro Enterprise\nStatus: ACTIVE\nMajor Activity: Manufacturing\nIssuer Verified: True"
+}

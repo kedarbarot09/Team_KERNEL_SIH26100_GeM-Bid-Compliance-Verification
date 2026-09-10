@@ -1,0 +1,11 @@
+CHARTERED ACCOUNTANTS AUDITED TURNOVER CERTIFICATE
+------------------------------------------------------------------
+Client Name: Alpha Tech Solutions Pvt Ltd
+CA Membership Number: 412356
+Unique Document Identification Number (UDIN): 25412356AAAAAA1234
+Audited Turnover Records:
+  - Financial Year 2023-24: INR 4.50 Crores (450.00 Lakhs)
+  - Financial Year 2024-25: INR 5.20 Crores (520.00 Lakhs)
+  - Financial Year 2025-26: INR 6.10 Crores (610.00 Lakhs)
+Average Annual Turnover (Last 3 FYs): INR 5.27 Crores (526.67 Lakhs)
+

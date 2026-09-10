@@ -1,0 +1,6 @@
+TECHNICAL SPECIFICATIONS COMPLIANCE SHEET (WITH DEVIATIONS)
+------------------------------------------------------------------
+Model: Standard Commercial Offering
+Supplier: Beta Infra Projects Ltd
+Compliance Statement: DEVIATIONS OBSERVED.
+Note: Certain tender parameters deviate from requested specifications without mitigation.

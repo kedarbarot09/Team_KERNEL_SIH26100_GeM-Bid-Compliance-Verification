@@ -1,0 +1,11 @@
+CHARTERED ACCOUNTANTS AUDITED TURNOVER CERTIFICATE
+------------------------------------------------------------------
+Client Name: Zenith Defence Systems Ltd
+CA Membership Number: 100234
+Unique Document Identification Number (UDIN): 25100234EEEEEE9988
+Audited Turnover Records:
+  - Financial Year 2023-24: INR 240.00 Crores (24000.00 Lakhs)
+  - Financial Year 2024-25: INR 285.50 Crores (28550.00 Lakhs)
+  - Financial Year 2025-26: INR 310.00 Crores (31000.00 Lakhs)
+Average Annual Turnover (Last 3 FYs): INR 278.50 Crores (27850.00 Lakhs)
+

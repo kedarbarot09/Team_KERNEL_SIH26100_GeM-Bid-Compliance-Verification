@@ -1,0 +1,12 @@
+CHARTERED ACCOUNTANTS AUDITED TURNOVER CERTIFICATE
+------------------------------------------------------------------
+Client Name: Nova Renewable Energy Pvt Ltd
+CA Membership Number: 556677
+Unique Document Identification Number (UDIN): 25556677HHHHHH5566
+Audited Turnover Records:
+  - Financial Year 2023-24: INR 0.40 Crores (40.00 Lakhs)
+  - Financial Year 2024-25: INR 1.20 Crores (120.00 Lakhs)
+  - Financial Year 2025-26: INR 2.10 Crores (210.00 Lakhs)
+Average Annual Turnover (Last 3 FYs): INR 1.23 Crores (123.33 Lakhs)
+
+[STARTUP RELAXATION CLAIM]: Vendor holds valid DPIIT Startup Certificate #DIPP11223 and requests turnover criteria waiver as per GeM/DPIIT procurement guidelines.

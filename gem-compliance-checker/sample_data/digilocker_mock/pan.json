@@ -1,0 +1,18 @@
+{
+  "status": "success",
+  "source": "digilocker",
+  "issuer_verified": true,
+  "issuer": "Income Tax Department",
+  "issuer_id": "in.gov.incometax",
+  "document_type": "PAN Card",
+  "uri": "in.gov.incometax-pan-AABCA1234F",
+  "date_of_issue": "2018-04-12",
+  "data": {
+    "pan": "AABCA1234F",
+    "name": "ALPHA TECH SOLUTIONS PRIVATE LIMITED",
+    "date_of_incorporation": "2018-04-12",
+    "status": "ACTIVE",
+    "category": "Company"
+  },
+  "raw_text": "INCOME TAX DEPARTMENT - GOVT OF INDIA\nDigiLocker Verified Credential (URI: in.gov.incometax-pan-AABCA1234F)\nPermanent Account Number: AABCA1234F\nName: ALPHA TECH SOLUTIONS PRIVATE LIMITED\nCategory: Company\nDate of Incorporation: 12/04/2018\nStatus: ACTIVE\nIssuer Verified: True"
+}

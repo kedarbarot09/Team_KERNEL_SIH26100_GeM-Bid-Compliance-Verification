@@ -21,13 +21,52 @@ CURRENT_DIR = Path(__file__).resolve().parent
 if str(CURRENT_DIR) not in sys.path:
     sys.path.insert(0, str(CURRENT_DIR))
 
+# Ensure freshly modified app submodules are automatically refreshed in long-running Streamlit sessions
+import importlib
+for _mod_name in ["app.db", "app.clauses", "app.demo_data", "app.image_extract", "app.image_match", "app.mock_portals"]:
+    if _mod_name in sys.modules:
+        try:
+            importlib.reload(sys.modules[_mod_name])
+        except Exception:
+            pass
+
 from app.clauses import DOCUMENT_CATEGORIES
+
+# Only actual document credential categories are uploaded by bidders
+UPLOAD_CATEGORIES = {
+    cat: dtypes for cat, dtypes in DOCUMENT_CATEGORIES.items()
+    if cat != "Visual identity & signatory verification"
+}
+
+import app.db
+if not hasattr(app.db, "clear_extracted_images_for_bidder"):
+    try:
+        importlib.reload(app.db)
+    except Exception:
+        pass
+
 from app.db import (
+    clear_all_bidder_documents,
+    clear_extracted_images_for_bidder,
+    delete_document,
     get_documents_by_bidder,
+    get_extracted_images,
     init_db,
+    save_digilocker_document,
+    save_extracted_image,
     save_uploaded_document,
     submit_bidder_documents,
 )
+from app.demo_data import (
+    BID_PRESETS,
+    generate_bidder_demo_documents,
+    get_bidder_by_id,
+)
+from app.digilocker import (
+    fetch_digilocker_document,
+    generate_digilocker_consent_url,
+)
+from app.image_extract import extract_photo, extract_signature
 
 # Auto-detect bare python execution (e.g. VS Code 'Run/Debug' or `python bidder_dashboard.py`)
 # and automatically bootstrap the Streamlit server runner.
@@ -194,9 +233,10 @@ with st.sidebar:
     st.markdown("#### 📋 Submission Guidelines")
     st.markdown(
         """
-        - Allowed file formats: **PDF, PNG, JPG**
+        - Allowed file formats: **PDF, PNG, JPG, TXT**
         - Ensure documents are clearly readable.
-        - Click **'Submit for Verification'** once all categories are uploaded.
+        - You can replace or remove any uploaded document before submission.
+        - Click **'Submit for Verification'** once all categories are ready.
         """
     )
 
@@ -217,92 +257,101 @@ st.markdown(
 )
 
 # -----------------------------------------------------------------------------
-# Bidder ID Input and Preset Demo Quick-Fills
+# Bidder ID Input and 10-Bidder Preset Quick-Fills
 # -----------------------------------------------------------------------------
-col_input, col_demo = st.columns([2, 1])
+preset_labels = [p["label"] for p in BID_PRESETS] + ["Custom Bidder ID..."]
+
+col_preset, col_input, col_demo = st.columns([2.5, 1.2, 1.5])
+
+with col_preset:
+    selected_preset_label = st.selectbox(
+        "Select Demo Bidder Profile:",
+        options=preset_labels,
+        index=0,
+        help="Select any of the 10 benchmark bidder profiles to test compliance verification",
+    )
+
+is_custom = (selected_preset_label == "Custom Bidder ID...")
+if not is_custom:
+    matched_preset = next((p for p in BID_PRESETS if p["label"] == selected_preset_label), BID_PRESETS[0])
+    default_bidder_id = matched_preset["bidder_id"]
+else:
+    matched_preset = None
+    default_bidder_id = "CUSTOM-BIDDER"
 
 with col_input:
     bidder_id = st.text_input(
-        "Enter Bidder ID / Bid Reference Number:",
-        value=st.session_state.get("bidder_id", "BID-2024-ALPHA"),
-        help="Unique identifier for the bidding entity or GeM bid submission (e.g., BID-2024-ALPHA or GEM/2024/B/4568912)",
+        "Bidder ID / Ref:",
+        value=default_bidder_id if not is_custom else st.session_state.get("bidder_id", "CUSTOM-BIDDER"),
+        help="Unique identifier for the bidding entity or GeM bid submission",
     ).strip().upper()
     st.session_state["bidder_id"] = bidder_id
 
 with col_demo:
     st.markdown("<div style='height: 28px;'></div>", unsafe_allow_html=True)
-    if st.button("🚀 Pre-fill Demo Bidder Documents", use_container_width=True, help="Auto-loads sample compliant credentials for fast testing"):
-        demo_bidder = bidder_id or "BID-2024-ALPHA"
-        # Create standard mock attachments
-        sample_docs = {
-            ("Statutory / registration documents", "Udyam Registration Certificate"): (
-                "udyam_certificate.txt",
-                b"UDYAM REGISTRATION CERTIFICATE\nUdyam Registration Number: UDYAM-MH-01-0012345\nName of Enterprise: ALPHA TECH SOLUTIONS PRIVATE LIMITED\nType: Micro Enterprise\nStatus: ACTIVE\nMajor Activity: Manufacturing\nDate: 15-08-2020",
-            ),
-            ("Statutory / registration documents", "GST Registration Certificate"): (
-                "gst_registration.txt",
-                b"GOVERNMENT OF INDIA - GST REGISTRATION CERTIFICATE\nRegistration Number (GSTIN): 27AABCA1234F1Z5\nLegal Name: ALPHA TECH SOLUTIONS PRIVATE LIMITED\nTrade Name: Alpha Tech Solutions\nConstitution: Private Limited Company\nStatus: ACTIVE\nFiling Status: UP TO DATE",
-            ),
-            ("Statutory / registration documents", "PAN Card"): (
-                "pan_card.txt",
-                b"INCOME TAX DEPARTMENT - GOVT OF INDIA\nPermanent Account Number: AABCA1234F\nName: ALPHA TECH SOLUTIONS PRIVATE LIMITED\nCategory: Company\nDate of Incorporation: 12/04/2018\nStatus: ACTIVE",
-            ),
-            ("Statutory / registration documents", "Certificate of Incorporation (MCA)"): (
-                "mca_incorporation.txt",
-                b"MINISTRY OF CORPORATE AFFAIRS - ROC MUMBAI\nCertificate of Incorporation pursuant to Section 7(2) of the Companies Act 2013\nCorporate Identity Number (CIN): U72200MH2018PTC308912\nCompany Name: ALPHA TECH SOLUTIONS PRIVATE LIMITED\nCompany Status: ACTIVE (Not Struck Off)",
-            ),
-            ("Statutory / registration documents", "Income Tax Returns"): (
-                "itr_3_years.txt",
-                b"INCOME TAX DEPARTMENT - ACKNOWLEDGMENT ITR-V\nAssessment Year 2022-23: Ack No 442981023912\nAssessment Year 2023-24: Ack No 881290312904\nAssessment Year 2024-25: Ack No 992109412095\nFiling Status: Successfully Verified for last 3 Assessment Years.",
-            ),
-            ("Statutory / registration documents", "EPFO/ESIC registration certificate"): (
-                "epfo_esic_cert.txt",
-                b"EMPLOYEES PROVIDENT FUND ORGANISATION (EPFO)\nEstablishment Code: MH/BAN/0048192\nESIC 17-digit Registration: 31000492810001001\nStatus: Registered and active statutory employee contributions.",
-            ),
-            ("Financial documents", "Audited financial statement / turnover certificate"): (
-                "turnover_certificate.txt",
-                b"CHARTERED ACCOUNTANT TURNOVER CERTIFICATE\nUDIN: 24045129BCA99182\nTurnover FY 2021-22: INR 45.00 Lakhs\nTurnover FY 2022-23: INR 55.00 Lakhs\nTurnover FY 2023-24: INR 65.00 Lakhs\nAverage Annual Turnover (last 3 FYs): INR 55.00 Lakhs.\nAudited Balance Sheets and P&L attached.",
-            ),
-            ("Financial documents", "EMD proof"): (
-                "emd_proof.txt",
-                b"EMD EXEMPTION CLAIM UNDER PUBLIC PROCUREMENT POLICY FOR MSEs\nUdyam Registration: UDYAM-MH-01-0012345\nEnterprise Category: Micro Enterprise\n100% EMD waiver claimed in accordance with GeM GTC clause 4(m).",
-            ),
-            ("Eligibility exemption / preference documents", "Make in India / local content self-declaration"): (
-                "mii_declaration.txt",
-                b"MAKE IN INDIA (MII) LOCAL CONTENT SELF-DECLARATION\nTender Ref: GEM/2024/B/4568912\nWe hereby certify that the Local Value Addition / Content for the offered product is 65.0%.\nClassification: Class-I Local Supplier\nManufacturing Plant: MIDC Industrial Area, Pune, Maharashtra.",
-            ),
-            ("Technical / product-specific documents", "OEM authorization letter"): (
-                "oem_authorization.txt",
-                b"MANUFACTURER AUTHORIZATION FORM (MAF)\nTender Reference: GEM/2024/B/4568912\nWe hereby authorize M/s Alpha Tech Solutions Private Limited to quote and deliver high-performance workstations with full 3-year onsite OEM warranty.",
-            ),
-            ("Technical / product-specific documents", "BIS certification / quality certificate"): (
-                "bis_iso_cert.txt",
-                b"BUREAU OF INDIAN STANDARDS (BIS) & ISO CERTIFICATION\nBIS Registration: CM/L-7891204\nISO Standard: ISO 9001:2015 Quality Management System\nValidity: Unexpired, valid up to 2027.",
-            ),
-            ("Technical / product-specific documents", "Product technical specification sheet/brochure"): (
-                "tech_specs_brochure.txt",
-                b"TECHNICAL SPECIFICATION SCHEDULE & PRODUCT BROCHURE\nTender: Supply of High-Performance Computing Workstations\nOffered Model: ProWorkstation Alpha-900\nProcessor: 32-Core Enterprise CPU\nRAM: 128GB ECC DDR5\nStorage: 2TB NVMe PCIe 4.0\nCompliance: Fully compliant with tender technical schedule without deviation.",
-            ),
-            ("Technical / product-specific documents", "Past performance / experience certificate"): (
-                "past_performance.txt",
-                b"CLIENT PERFORMANCE & EXPERIENCE CERTIFICATES\nYears in relevant business: 6 Years\nCompleted Government Supply Orders: 14 completed contracts\nCumulative Order Value: INR 120.00 Lakhs.\nSatisfactory performance certificates attached from DRDO, IIT, and CSIR.",
-            ),
-            ("Compliance / background documents", "Self-declaration of non-blacklisting"): (
-                "non_blacklisting.txt",
-                b"UNDERTAKING & SELF-DECLARATION OF NON-BLACKLISTING\nWe, Alpha Tech Solutions Private Limited, solemnly affirm that our firm has never been blacklisted, debarred, or suspended by Government e-Marketplace (GeM), Central/State Ministries, or PSUs.\nSigned: Authorized Signatory\nDate: Current Date",
-            ),
-        }
+    d_col1, d_col2 = st.columns(2)
+    with d_col1:
+        if st.button("🚀 Pre-fill Bidder Docs", use_container_width=True, help="Auto-loads benchmark credentials for the selected bidder profile"):
+            target_bidder = bidder_id or (matched_preset["bidder_id"] if matched_preset else "BID-001")
+            
+            # Clear existing to ensure fresh state
+            clear_all_bidder_documents(target_bidder)
+            clear_extracted_images_for_bidder(target_bidder)
 
-        for (cat, doc_type), (fname, fbytes) in sample_docs.items():
-            save_uploaded_document(
-                bidder_id=demo_bidder,
-                category=cat,
-                document_type=doc_type,
-                filename=fname,
-                file_bytes=fbytes,
-            )
-        st.success(f"Successfully loaded all 14 sample documents for `{demo_bidder}`! You can now submit below.")
-        st.rerun()
+            # Generate realistic document set
+            sample_docs = generate_bidder_demo_documents(target_bidder)
+            if not sample_docs and matched_preset:
+                sample_docs = generate_bidder_demo_documents(matched_preset["bidder_id"])
+
+            for (cat, doc_type), (fname, fbytes) in sample_docs.items():
+                save_uploaded_document(
+                    bidder_id=target_bidder,
+                    category=cat,
+                    document_type=doc_type,
+                    filename=fname,
+                    file_bytes=fbytes,
+                )
+                if fname.lower().endswith(".pdf"):
+                    photo = extract_photo(fbytes, doc_type=doc_type)
+                    if photo:
+                        save_extracted_image(
+                            target_bidder,
+                            doc_type,
+                            "photo",
+                            photo.to_bytes(),
+                            photo.source_page,
+                            photo.extraction_confidence,
+                        )
+                    sig = extract_signature(fbytes, doc_type=doc_type)
+                    if sig:
+                        save_extracted_image(
+                            target_bidder,
+                            doc_type,
+                            "signature",
+                            sig.to_bytes(),
+                            sig.source_page,
+                            sig.extraction_confidence,
+                        )
+                st.session_state[f"sig_{target_bidder}_{doc_type}"] = f"{fname}_{len(fbytes)}"
+                st.session_state[f"ver_{target_bidder}_{doc_type}"] = st.session_state.get(f"ver_{target_bidder}_{doc_type}", 0) + 1
+
+            st.success(f"Loaded {len(sample_docs)} documents for `{target_bidder}`!")
+            st.rerun()
+
+    with d_col2:
+        if st.button("🗑️ Clear All Docs", use_container_width=True, help="Remove all uploaded documents for this bidder"):
+            target_bidder = bidder_id or "BID-001"
+            cleared = clear_all_bidder_documents(target_bidder)
+            clear_extracted_images_for_bidder(target_bidder)
+            for cat, dtypes in UPLOAD_CATEGORIES.items():
+                for dt in dtypes:
+                    st.session_state.pop(f"sig_{target_bidder}_{dt}", None)
+                    st.session_state[f"ver_{target_bidder}_{dt}"] = st.session_state.get(f"ver_{target_bidder}_{dt}", 0) + 1
+            st.warning(f"Cleared {cleared} document(s) for `{target_bidder}`.")
+            st.rerun()
+
+if matched_preset:
+    st.info(f"🏢 **{matched_preset['company_name']}** ({matched_preset['category']}) — Expected: **{matched_preset['badge']}** | 📝 *{matched_preset['notes']}*")
 
 st.markdown("---")
 
@@ -310,49 +359,173 @@ st.markdown("---")
 # Collapsible Upload Sections across 5 Categories
 # -----------------------------------------------------------------------------
 st.markdown("### Document Submission Checklist")
-st.caption("Upload your credentials into the corresponding categories below. Formats accepted: **PDF, PNG, JPG**.")
+st.caption("Upload your credentials into the corresponding categories below. To change an existing document, choose a new file or click 'Remove'.")
 
 # Fetch currently uploaded docs for this bidder to show indicators
 current_docs = get_documents_by_bidder(bidder_id) if bidder_id else []
 uploaded_map = {d["document_type"]: d for d in current_docs}
+extracted_visuals = get_extracted_images(bidder_id) if bidder_id else []
 
-for cat_idx, (category_name, doc_types) in enumerate(DOCUMENT_CATEGORIES.items(), 1):
+for cat_idx, (category_name, doc_types) in enumerate(UPLOAD_CATEGORIES.items(), 1):
     # Calculate how many docs in this category are uploaded
     cat_uploaded = sum(1 for dt in doc_types if dt in uploaded_map)
     total_in_cat = len(doc_types)
 
     # Category Expander
     expander_title = f"{category_name} ({cat_uploaded}/{total_in_cat} uploaded)"
-    with st.expander(expander_title, expanded=(cat_idx <= 2)):
+    with st.expander(expander_title, expanded=(cat_idx <= 2 or cat_uploaded > 0)):
         st.markdown(f"#### {category_name}")
         
         # Grid of uploaders
         for doc_type in doc_types:
-            col1, col2 = st.columns([3, 1])
+            is_uploaded = doc_type in uploaded_map
+            rec = uploaded_map.get(doc_type)
+            ver = st.session_state.get(f"ver_{bidder_id}_{doc_type}", 0)
+            uploader_key = f"uploader_{bidder_id}_{doc_type}_{ver}"
+
+            col1, col2 = st.columns([3, 1.2])
             with col1:
+                uploader_label = f"📄 {doc_type}" + (" *(Select new file to replace current)*" if is_uploaded else ":")
                 uploaded_file = st.file_uploader(
-                    f"📄 {doc_type}:",
+                    uploader_label,
                     type=["pdf", "png", "jpg", "jpeg", "txt"],
-                    key=f"upload_{bidder_id}_{doc_type}",
+                    key=uploader_key,
                 )
                 if uploaded_file is not None:
-                    file_bytes = uploaded_file.read()
-                    save_uploaded_document(
-                        bidder_id=bidder_id,
-                        category=category_name,
-                        document_type=doc_type,
-                        filename=uploaded_file.name,
-                        file_bytes=file_bytes,
-                    )
-                    st.success(f"Uploaded `{uploaded_file.name}` for `{doc_type}`.")
-                    st.rerun()
+                    file_bytes = uploaded_file.getvalue()
+                    current_sig = f"{uploaded_file.name}_{len(file_bytes)}"
+                    last_sig = st.session_state.get(f"sig_{bidder_id}_{doc_type}")
+
+                    if current_sig != last_sig:
+                        save_uploaded_document(
+                            bidder_id=bidder_id,
+                            category=category_name,
+                            document_type=doc_type,
+                            filename=uploaded_file.name,
+                            file_bytes=file_bytes,
+                        )
+                        if uploaded_file.name.lower().endswith(".pdf"):
+                            photo = extract_photo(file_bytes, doc_type=doc_type)
+                            if photo:
+                                save_extracted_image(
+                                    bidder_id,
+                                    doc_type,
+                                    "photo",
+                                    photo.to_bytes(),
+                                    photo.source_page,
+                                    photo.extraction_confidence,
+                                )
+                            sig = extract_signature(file_bytes, doc_type=doc_type)
+                            if sig:
+                                save_extracted_image(
+                                    bidder_id,
+                                    doc_type,
+                                    "signature",
+                                    sig.to_bytes(),
+                                    sig.source_page,
+                                    sig.extraction_confidence,
+                                )
+                        st.session_state[f"sig_{bidder_id}_{doc_type}"] = current_sig
+                        st.toast(f"✅ Successfully updated {doc_type} with '{uploaded_file.name}'!")
+                        st.rerun()
+
+                dl_col, link_col = st.columns([1.6, 2.4])
+                with dl_col:
+                    if st.button("🏛️ Fetch via DigiLocker instead", key=f"dl_btn_{bidder_id}_{doc_type}_{ver}", help=f"Fetch authentic {doc_type} directly from DigiLocker repository"):
+                        consent_url = generate_digilocker_consent_url(bidder_id=bidder_id, document_type=doc_type)
+                        st.session_state[f"consent_url_{bidder_id}_{doc_type}"] = consent_url
+                        
+                        # In mock mode / offline demo, simulate instant successful fetch using canned sample data
+                        session_id = f"mock_{doc_type.lower().replace(' ', '_')}_{bidder_id}"
+                        doc_payload = fetch_digilocker_document(session_id=session_id, document_type=doc_type)
+                        
+                        save_digilocker_document(
+                            bidder_id=bidder_id,
+                            category=category_name,
+                            document_type=doc_type,
+                            doc_data=doc_payload,
+                        )
+                        st.session_state[f"sig_{bidder_id}_{doc_type}"] = f"digilocker_{doc_type}"
+                        st.toast(f"✅ Fetched and issuer-verified {doc_type} via DigiLocker!")
+                        st.rerun()
+
+                with link_col:
+                    last_consent_url = st.session_state.get(f"consent_url_{bidder_id}_{doc_type}")
+                    if last_consent_url:
+                        st.markdown(
+                            f"<div style='margin-top: 6px; font-size: 0.8rem;'>"
+                            f"🔗 <b>Consent URL:</b> <a href='{last_consent_url}' target='_blank' style='color: #2563EB; font-weight: 600; text-decoration: underline;'>Open DigiLocker Auth</a>"
+                            f"</div>",
+                            unsafe_allow_html=True,
+                        )
 
             with col2:
-                if doc_type in uploaded_map:
-                    rec = uploaded_map[doc_type]
-                    st.markdown(f"<div style='margin-top: 32px;'><b>✅ Uploaded:</b><br><small>{rec['filename']}</small></div>", unsafe_allow_html=True)
+                if is_uploaded and rec:
+                    is_digilocker = rec.get("source") == "digilocker" or rec.get("issuer_verified")
+                    if is_digilocker:
+                        badge_border = "#93C5FD"
+                        badge_bg = "#EFF6FF"
+                        header_badge = "🏛️ DigiLocker Verified"
+                        header_color = "#1D4ED8"
+                        source_text = "✅ Issuer-verified via DigiLocker"
+                        source_color = "#2563EB"
+                    else:
+                        badge_border = "#BBF7D0"
+                        badge_bg = "#F0FDF4"
+                        header_badge = "📄 Current Upload"
+                        header_color = "#166534"
+                        source_text = "Manual File Upload"
+                        source_color = "#059669"
+
+                    st.markdown(
+                        f"""
+                        <div style='margin-top: 18px; padding: 6px 10px; background: {badge_bg}; border: 1px solid {badge_border}; border-radius: 6px;'>
+                            <span style='color: {header_color}; font-weight: 700; font-size: 0.8rem;'>{header_badge}:</span><br>
+                            <span style='font-size: 0.82rem; color: #1E293B; word-break: break-all;'><b>{rec['filename']}</b></span><br>
+                            <span style='font-size: 0.72rem; color: {source_color}; font-weight: 600;'>{source_text}</span><br>
+                            <span style='font-size: 0.7rem; color: #64748B;'>{rec['uploaded_at']}</span>
+                        </div>
+                        """,
+                        unsafe_allow_html=True,
+                    )
+                    if st.button("🗑️ Remove", key=f"del_{bidder_id}_{doc_type}_{ver}", use_container_width=True, help=f"Remove current {doc_type}"):
+                        delete_document(bidder_id, doc_type)
+                        st.session_state.pop(f"sig_{bidder_id}_{doc_type}", None)
+                        st.session_state.pop(f"consent_url_{bidder_id}_{doc_type}", None)
+                        st.session_state[f"ver_{bidder_id}_{doc_type}"] = ver + 1
+                        st.toast(f"Removed {doc_type}")
+                        st.rerun()
                 else:
-                    st.markdown("<div style='margin-top: 32px; color: #94A3B8;'><i>Pending upload</i></div>", unsafe_allow_html=True)
+                    st.markdown("<div style='margin-top: 36px; color: #94A3B8; font-size: 0.85rem;'><i>Pending upload</i></div>", unsafe_allow_html=True)
+
+            # Visual identity / specimen preview card if extracted
+            if is_uploaded:
+                doc_visuals = [img for img in extracted_visuals if img["document_id"] == doc_type]
+                if doc_visuals:
+                    st.markdown(
+                        "<div style='margin-top: 6px; margin-bottom: 6px; padding: 6px 12px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 6px;'>"
+                        "<span style='font-size: 0.78rem; font-weight: 700; color: #475569;'>👁️ CAPTURED BIOMETRIC SPECIMENS (READ-ONLY CONFIRMATION):</span>"
+                        "</div>",
+                        unsafe_allow_html=True,
+                    )
+                    v_cols = st.columns(len(doc_visuals) + 1)
+                    for v_idx, v_img in enumerate(doc_visuals):
+                        with v_cols[v_idx]:
+                            lbl = "Photo" if v_img["image_type"] == "photo" else "Signature"
+                            conf = int(v_img["extraction_confidence"] * 100)
+                            st.image(
+                                v_img["image_blob"],
+                                caption=f"{lbl} Specimen (Page {v_img['source_page']} | Conf: {conf}%)",
+                                width=140 if v_img["image_type"] == "photo" else 220,
+                            )
+                    with v_cols[-1]:
+                        st.markdown(
+                            "<div style='margin-top: 14px;'>"
+                            "<span style='background: #DCFCE7; color: #166534; font-weight: 700; font-size: 0.75rem; padding: 4px 8px; border-radius: 12px;'>✅ Biometrics Captured</span><br>"
+                            "<span style='font-size: 0.72rem; color: #64748B;'>Ready for officer cross-verification</span>"
+                            "</div>",
+                            unsafe_allow_html=True,
+                        )
 
             st.markdown("<hr style='margin: 8px 0; border-top: 1px dashed #E2E8F0;'>", unsafe_allow_html=True)
 
@@ -372,10 +545,14 @@ else:
     table_data = []
     for d in refreshed_docs:
         status_val = d["status"]
-        badge_class = f"status-{status_val}"
+        is_dl = d.get("source") == "digilocker" or d.get("issuer_verified")
+        src_label = "🏛️ DigiLocker" if is_dl else "📄 Upload"
+        verified_label = "✅ Verified" if is_dl else "—"
         table_data.append({
             "Category": d["category"],
             "Document Type": d["document_type"],
+            "Source": src_label,
+            "Issuer Verified": verified_label,
             "Filename": d["filename"],
             "Uploaded At": d["uploaded_at"],
             "Status": status_val.upper(),

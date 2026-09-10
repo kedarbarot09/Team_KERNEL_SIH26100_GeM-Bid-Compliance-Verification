@@ -1,0 +1,11 @@
+CHARTERED ACCOUNTANTS AUDITED TURNOVER CERTIFICATE
+------------------------------------------------------------------
+Client Name: Delta Precision Engineering Ltd
+CA Membership Number: 098765
+Unique Document Identification Number (UDIN): 25098765CCCCCC7890
+Audited Turnover Records:
+  - Financial Year 2023-24: INR 8.40 Crores (840.00 Lakhs)
+  - Financial Year 2024-25: INR 9.10 Crores (910.00 Lakhs)
+  - Financial Year 2025-26: INR 10.30 Crores (1030.00 Lakhs)
+Average Annual Turnover (Last 3 FYs): INR 9.27 Crores (926.67 Lakhs)
+

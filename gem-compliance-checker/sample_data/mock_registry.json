@@ -1,146 +1,1033 @@
 {
-  "entities": [
+  "bidders": [
     {
-      "entity_id": "ENT-001",
-      "company_name": "Alpha Tech Solutions Private Limited",
-      "pan_details": {
-        "pan": "AABCA1234F",
-        "registered_name": "ALPHA TECH SOLUTIONS PRIVATE LIMITED",
-        "status": "ACTIVE",
-        "category": "Company",
-        "date_of_incorporation": "2018-04-12"
+      "bidder_id": "BID-001",
+      "company_name": "Alpha Tech Solutions Pvt Ltd",
+      "profile": {
+        "pan": "AAACA1234A",
+        "gstin": "27AAACA1234A1Z5",
+        "cin": "U72200MH2018PTC312345",
+        "category": "Micro",
+        "is_startup": false,
+        "is_mse": true
       },
-      "gstin_details": {
-        "gstin": "27AABCA1234F1Z5",
-        "legal_name": "ALPHA TECH SOLUTIONS PRIVATE LIMITED",
-        "trade_name": "Alpha Tech Solutions",
-        "status": "ACTIVE",
-        "state_code": "27",
-        "state_name": "Maharashtra",
-        "taxpayer_type": "Regular",
-        "filing_status": "UP_TO_DATE"
-      },
-      "udyam_details": {
-        "udyam_registration_number": "UDYAM-MH-01-0012345",
-        "enterprise_name": "ALPHA TECH SOLUTIONS PRIVATE LIMITED",
-        "enterprise_type": "Micro",
-        "major_activity": "Manufacturing",
-        "status": "ACTIVE",
-        "registration_date": "2020-08-15",
-        "valid_until": "PERPETUAL"
-      },
-      "financial_records": {
-        "currency": "INR_LAKHS",
-        "turnover_fy_2021_22": 45.0,
-        "turnover_fy_2022_23": 55.0,
-        "turnover_fy_2023_24": 65.0,
-        "average_annual_turnover": 55.0
-      },
-      "past_experience": {
-        "years_in_business": 6,
-        "completed_govt_orders": 14,
-        "total_order_value_lakhs": 120.0
-      },
-      "debarment_status": {
-        "is_blacklisted": false,
-        "incident_count": 0,
-        "last_audit_date": "2024-01-10"
+      "documents": {
+        "statutory": {
+          "udyam_certificate": {
+            "doc_id": "DOC-UDYAM-001",
+            "number": "UDYAM-MH-01-0012345",
+            "issue_date": "2021-04-10",
+            "validity": "PERMANENT",
+            "enterprise_type": "Micro",
+            "source": "DIGILOCKER",
+            "verified": true
+          },
+          "gst_registration": {
+            "doc_id": "DOC-GST-001",
+            "gstin": "27AAACA1234A1Z5",
+            "status": "Active",
+            "filing_status_3b": "Regular",
+            "source": "GSTN_API",
+            "verified": true
+          },
+          "pan_card": {
+            "doc_id": "DOC-PAN-001",
+            "pan": "AAACA1234A",
+            "status": "VALID",
+            "verified": true
+          },
+          "mca_incorporation": {
+            "doc_id": "DOC-MCA-001",
+            "cin": "U72200MH2018PTC312345",
+            "status": "Active",
+            "inc_date": "2018-06-12",
+            "verified": true
+          },
+          "itr_v_3years": [
+            { "ay": "2024-25", "filed_date": "2024-07-20", "acknowledged": true },
+            { "ay": "2023-24", "filed_date": "2023-07-15", "acknowledged": true },
+            { "ay": "2022-23", "filed_date": "2022-07-28", "acknowledged": true }
+          ],
+          "epfo_esic_clearance": {
+            "epfo_code": "MH/BAN/0045678/000",
+            "esic_code": "31000456780000101",
+            "default_flag": false,
+            "last_paid_month": "2026-07"
+          }
+        },
+        "financial": {
+          "audited_turnover_certificate": {
+            "ca_membership_num": "412356",
+            "udin": "25412356AAAAAA1234",
+            "fy_2023_24_inr_cr": 4.5,
+            "fy_2024_25_inr_cr": 5.2,
+            "fy_2025_26_inr_cr": 6.1,
+            "meets_avg_threshold": true
+          },
+          "emd_proof": {
+            "type": "EXEMPTION_MSE",
+            "exemption_claimed": true,
+            "claimed_basis": "UDYAM",
+            "exemption_valid": true,
+            "bg_details": null
+          }
+        },
+        "eligibility_exemption": {
+          "dpiit_startup": null,
+          "nsic_certificate": null,
+          "make_in_india_declaration": {
+            "local_content_percentage": 68.5,
+            "class_type": "Class-1 Local Supplier",
+            "location_of_value_add": "Pune, Maharashtra"
+          }
+        },
+        "technical": {
+          "oem_authorization": {
+            "oem_name": "ComputeTech Global Ltd",
+            "auth_code": "AUTH-CTG-2026-991",
+            "valid_until": "2027-12-31",
+            "verified": true
+          },
+          "bis_iso_certificates": [
+            { "standard": "ISO 9001:2015", "valid_until": "2027-04-15", "accreditation": "NABCB" }
+          ],
+          "tech_spec_compliance_sheet": { "all_deviations_mitigated": true, "matches_tender_specs": true },
+          "past_performance_proofs": [
+            { "client": "Western Railway", "order_val_cr": 1.2, "status": "COMPLETED", "completion_cert_attached": true }
+          ]
+        },
+        "compliance_background": {
+          "non_blacklisting_declaration": { "self_declared_clean": true, "notarized": true },
+          "central_blacklist_match": false,
+          "digilocker_linked": true
+        }
       }
     },
     {
-      "entity_id": "ENT-002",
-      "company_name": "Beta Infra Projects Limited",
-      "pan_details": {
-        "pan": "AAACB5678K",
-        "registered_name": "BETA INFRA PROJECTS LIMITED",
-        "status": "ACTIVE",
-        "category": "Company",
-        "date_of_incorporation": "2021-09-20"
+      "bidder_id": "BID-002",
+      "company_name": "Beta Infra Projects Ltd",
+      "profile": {
+        "pan": "BBBCB5678B",
+        "gstin": "24BBBCB5678B1Z2",
+        "cin": "U45200GJ2015PLC081234",
+        "category": "Medium",
+        "is_startup": false,
+        "is_mse": false
       },
-      "gstin_details": {
-        "gstin": "07AAACB5678K1Z2",
-        "legal_name": "BETA INFRA PROJECTS LIMITED",
-        "trade_name": "Beta Infra Projects",
-        "status": "SUSPENDED",
-        "state_code": "07",
-        "state_name": "Delhi",
-        "taxpayer_type": "Regular",
-        "filing_status": "OVERDUE_RETURNS",
-        "suspension_reason": "Non-filing of GSTR-3B for continuous 6 months"
-      },
-      "udyam_details": {
-        "udyam_registration_number": "UDYAM-DL-02-0054321",
-        "enterprise_name": "BETA INFRA PROJECTS LIMITED",
-        "enterprise_type": "Small",
-        "major_activity": "Services",
-        "status": "EXPIRED",
-        "registration_date": "2021-10-01",
-        "valid_until": "2023-03-31",
-        "expiry_reason": "Mandatory annual re-declaration pending on portal"
-      },
-      "financial_records": {
-        "currency": "INR_LAKHS",
-        "turnover_fy_2021_22": 12.0,
-        "turnover_fy_2022_23": 15.0,
-        "turnover_fy_2023_24": 14.0,
-        "average_annual_turnover": 13.67
-      },
-      "past_experience": {
-        "years_in_business": 3,
-        "completed_govt_orders": 2,
-        "total_order_value_lakhs": 18.5
-      },
-      "debarment_status": {
-        "is_blacklisted": false,
-        "incident_count": 1,
-        "warning_issued": "Delay in milestone execution under GeM Bid #GEM/2023/B/8912",
-        "last_audit_date": "2023-11-20"
+      "documents": {
+        "statutory": {
+          "udyam_certificate": {
+            "doc_id": "DOC-UDYAM-002",
+            "number": "UDYAM-GJ-01-0098765",
+            "issue_date": "2020-08-10",
+            "validity": "EXPIRED",
+            "expiry_date": "2022-03-31",
+            "expiry_reason": "Annual re-declaration overdue since 31-Mar-2022 under MSME Notification S.O. 2119(E)",
+            "enterprise_type": "Medium",
+            "source": "MANUAL_UPLOAD",
+            "verified": false
+          },
+          "gst_registration": {
+            "doc_id": "DOC-GST-002",
+            "gstin": "24BBBCB5678B1Z2",
+            "status": "Suspended",
+            "filing_status_3b": "Defaulter",
+            "source": "GSTN_API",
+            "verified": false
+          },
+          "pan_card": {
+            "doc_id": "DOC-PAN-002",
+            "pan": "BBBCB5678B",
+            "status": "VALID",
+            "verified": true
+          },
+          "mca_incorporation": {
+            "doc_id": "DOC-MCA-002",
+            "cin": "U45200GJ2015PLC081234",
+            "status": "Active",
+            "inc_date": "2015-02-18",
+            "verified": true
+          },
+          "itr_v_3years": [
+            { "ay": "2024-25", "filed_date": "2024-11-12", "acknowledged": true },
+            { "ay": "2023-24", "filed_date": null, "acknowledged": false },
+            { "ay": "2022-23", "filed_date": "2022-10-01", "acknowledged": true }
+          ],
+          "epfo_esic_clearance": null
+        },
+        "financial": {
+          "audited_turnover_certificate": {
+            "ca_membership_num": "219874",
+            "udin": "INVALID_UDIN_NOT_RESOLVED",
+            "fy_2023_24_inr_cr": 12.0,
+            "fy_2024_25_inr_cr": 8.5,
+            "fy_2025_26_inr_cr": 10.1,
+            "meets_avg_threshold": true
+          },
+          "emd_proof": {
+            "type": "EMD_NOT_FOUND",
+            "exemption_claimed": true,
+            "claimed_basis": "UDYAM",
+            "exemption_valid": false,
+            "bg_details": null
+          }
+        },
+        "eligibility_exemption": {
+          "dpiit_startup": null,
+          "nsic_certificate": null,
+          "make_in_india_declaration": {
+            "local_content_percentage": 25.0,
+            "class_type": "Non-Local Supplier",
+            "location_of_value_add": "Surat, Gujarat"
+          }
+        },
+        "technical": {
+          "oem_authorization": null,
+          "bis_iso_certificates": [],
+          "tech_spec_compliance_sheet": { "all_deviations_mitigated": false, "matches_tender_specs": false },
+          "past_performance_proofs": []
+        },
+        "compliance_background": {
+          "non_blacklisting_declaration": { "self_declared_clean": true, "notarized": false },
+          "central_blacklist_match": false,
+          "digilocker_linked": false
+        }
       }
     },
     {
-      "entity_id": "ENT-003",
-      "company_name": "Gamma Fraudulent Trading Co",
-      "pan_details": {
-        "pan": "XYZPG9999Z",
-        "registered_name": "GAMMA TRADING AND SUPPLIES",
-        "status": "CANCELLED",
-        "category": "Proprietorship",
-        "cancellation_reason": "Irregular identity documentation provided"
+      "bidder_id": "BID-003",
+      "company_name": "Gamma Trading Corporation",
+      "profile": {
+        "pan": "CCCGC9012C",
+        "gstin": "07CCCGC9012C1Z8",
+        "cin": "U51909DL2017PTC324567",
+        "category": "Small",
+        "is_startup": false,
+        "is_mse": true
       },
-      "gstin_details": {
-        "gstin": "06XYZPG9999Z1ZX",
-        "legal_name": "GAMMA TRADING AND SUPPLIES",
-        "trade_name": "Gamma Trading",
-        "status": "CANCELLED_SUO_MOTO",
-        "state_code": "06",
-        "state_name": "Haryana",
-        "taxpayer_type": "Regular",
-        "filing_status": "CANCELLED",
-        "suspension_reason": "Identified under circular trading & fake invoicing probe"
+      "documents": {
+        "statutory": {
+          "udyam_certificate": {
+            "doc_id": "DOC-UDYAM-003",
+            "number": "UDYAM-DL-01-0034567",
+            "issue_date": "2021-01-15",
+            "validity": "PERMANENT",
+            "enterprise_type": "Small",
+            "source": "MANUAL_UPLOAD",
+            "verified": true
+          },
+          "gst_registration": {
+            "doc_id": "DOC-GST-003",
+            "gstin": "07CCCGC9012C1Z8",
+            "status": "Active",
+            "filing_status_3b": "Regular",
+            "source": "GSTN_API",
+            "verified": true
+          },
+          "pan_card": {
+            "doc_id": "DOC-PAN-003",
+            "pan": "CCCGC9012C",
+            "status": "VALID",
+            "verified": true
+          },
+          "mca_incorporation": {
+            "doc_id": "DOC-MCA-003",
+            "cin": "U51909DL2017PTC324567",
+            "status": "Active",
+            "inc_date": "2017-09-21",
+            "verified": true
+          },
+          "itr_v_3years": [
+            { "ay": "2024-25", "filed_date": "2024-06-25", "acknowledged": true },
+            { "ay": "2023-24", "filed_date": "2023-06-20", "acknowledged": true },
+            { "ay": "2022-23", "filed_date": "2022-07-02", "acknowledged": true }
+          ],
+          "epfo_esic_clearance": {
+            "epfo_code": "DL/CPM/0087654/000",
+            "esic_code": "11000876540000202",
+            "default_flag": false,
+            "last_paid_month": "2026-06"
+          }
+        },
+        "financial": {
+          "audited_turnover_certificate": {
+            "ca_membership_num": "512489",
+            "udin": "25512489BBBBBB4321",
+            "fy_2023_24_inr_cr": 3.8,
+            "fy_2024_25_inr_cr": 4.1,
+            "fy_2025_26_inr_cr": 4.5,
+            "meets_avg_threshold": true
+          },
+          "emd_proof": {
+            "type": "EXEMPTION_MSE",
+            "exemption_claimed": true,
+            "claimed_basis": "UDYAM",
+            "exemption_valid": true,
+            "bg_details": null
+          }
+        },
+        "eligibility_exemption": {
+          "dpiit_startup": null,
+          "nsic_certificate": null,
+          "make_in_india_declaration": {
+            "local_content_percentage": 52.0,
+            "class_type": "Class-1 Local Supplier",
+            "location_of_value_add": "Okhla, New Delhi"
+          }
+        },
+        "technical": {
+          "oem_authorization": {
+            "oem_name": "National Cabling Ltd",
+            "auth_code": "AUTH-NCL-4412",
+            "valid_until": "2027-03-31",
+            "verified": true
+          },
+          "bis_iso_certificates": [
+            { "standard": "ISO 9001:2015", "valid_until": "2026-11-30", "accreditation": "NABCB" }
+          ],
+          "tech_spec_compliance_sheet": { "all_deviations_mitigated": true, "matches_tender_specs": true },
+          "past_performance_proofs": [
+            { "client": "BSNL Delhi", "order_val_cr": 0.85, "status": "COMPLETED", "completion_cert_attached": true }
+          ]
+        },
+        "compliance_background": {
+          "non_blacklisting_declaration": { "self_declared_clean": true, "notarized": true },
+          "central_blacklist_match": true,
+          "blacklist_metadata": {
+            "debarred_by": "Ministry of Coal",
+            "reason": "Corrupt and fraudulent practice",
+            "start_date": "2025-02-10",
+            "end_date": "2028-02-09"
+          },
+          "digilocker_linked": false
+        }
+      }
+    },
+    {
+      "bidder_id": "BID-004",
+      "company_name": "Delta Precision Engineering Ltd",
+      "profile": {
+        "pan": "DDDCD3456D",
+        "gstin": "29DDDCD3456D1ZC",
+        "cin": "U29200KA2012PLC065432",
+        "category": "Small",
+        "is_startup": false,
+        "is_mse": true
       },
-      "udyam_details": {
-        "udyam_registration_number": "UDYAM-HR-03-0099999",
-        "enterprise_name": "GAMMA TRADING",
-        "status": "NOT_FOUND",
-        "remarks": "Registration number does not exist in national Udyam database"
+      "documents": {
+        "statutory": {
+          "udyam_certificate": {
+            "doc_id": "DOC-UDYAM-004",
+            "number": "UDYAM-KR-03-0045678",
+            "issue_date": "2020-11-20",
+            "validity": "PERMANENT",
+            "enterprise_type": "Small",
+            "source": "DIGILOCKER",
+            "verified": true
+          },
+          "gst_registration": {
+            "doc_id": "DOC-GST-004",
+            "gstin": "29DDDCD3456D1ZC",
+            "status": "Active",
+            "filing_status_3b": "Regular",
+            "source": "DIGILOCKER",
+            "verified": true
+          },
+          "pan_card": {
+            "doc_id": "DOC-PAN-004",
+            "pan": "DDDCD3456D",
+            "status": "VALID",
+            "source": "DIGILOCKER",
+            "verified": true
+          },
+          "mca_incorporation": {
+            "doc_id": "DOC-MCA-004",
+            "cin": "U29200KA2012PLC065432",
+            "status": "Active",
+            "inc_date": "2012-08-14",
+            "verified": true
+          },
+          "itr_v_3years": [
+            { "ay": "2024-25", "filed_date": "2024-07-05", "acknowledged": true },
+            { "ay": "2023-24", "filed_date": "2023-07-10", "acknowledged": true },
+            { "ay": "2022-23", "filed_date": "2022-07-12", "acknowledged": true }
+          ],
+          "epfo_esic_clearance": {
+            "epfo_code": "KN/BNG/0012345/000",
+            "esic_code": "53000123450000303",
+            "default_flag": false,
+            "last_paid_month": "2026-07"
+          }
+        },
+        "financial": {
+          "audited_turnover_certificate": {
+            "ca_membership_num": "098765",
+            "udin": "25098765CCCCCC7890",
+            "fy_2023_24_inr_cr": 8.4,
+            "fy_2024_25_inr_cr": 9.1,
+            "fy_2025_26_inr_cr": 10.3,
+            "meets_avg_threshold": true
+          },
+          "emd_proof": {
+            "type": "EXEMPTION_MSE",
+            "exemption_claimed": true,
+            "claimed_basis": "UDYAM",
+            "exemption_valid": true,
+            "bg_details": null
+          }
+        },
+        "eligibility_exemption": {
+          "dpiit_startup": null,
+          "nsic_certificate": {
+            "cert_num": "NSIC/BNG/2023/8891",
+            "valid_until": "2027-06-30",
+            "monetary_limit_cr": 15.0,
+            "verified": true
+          },
+          "make_in_india_declaration": {
+            "local_content_percentage": 82.0,
+            "class_type": "Class-1 Local Supplier",
+            "location_of_value_add": "Peenya, Bengaluru"
+          }
+        },
+        "technical": {
+          "oem_authorization": {
+            "oem_name": "Direct Manufacturer (OEM)",
+            "auth_code": "SELF_MANUFACTURER",
+            "valid_until": "PERMANENT",
+            "verified": true
+          },
+          "bis_iso_certificates": [
+            { "standard": "ISO 9001:2015", "valid_until": "2028-01-10", "accreditation": "NABCB" },
+            { "standard": "ISO 14001:2015", "valid_until": "2027-11-04", "accreditation": "NABCB" }
+          ],
+          "tech_spec_compliance_sheet": { "all_deviations_mitigated": true, "matches_tender_specs": true },
+          "past_performance_proofs": [
+            { "client": "HAL Bengaluru", "order_val_cr": 2.4, "status": "COMPLETED", "completion_cert_attached": true },
+            { "client": "ISRO Telemetry", "order_val_cr": 1.9, "status": "COMPLETED", "completion_cert_attached": true }
+          ]
+        },
+        "compliance_background": {
+          "non_blacklisting_declaration": { "self_declared_clean": true, "notarized": true },
+          "central_blacklist_match": false,
+          "digilocker_linked": true
+        }
+      }
+    },
+    {
+      "bidder_id": "BID-005",
+      "company_name": "Epsilon Office Supplies LLP",
+      "profile": {
+        "pan": "EEEPE7890E",
+        "gstin": "06EEEPE7890E1ZF",
+        "cin": "AAR-8765",
+        "category": "Micro",
+        "is_startup": true,
+        "is_mse": true
       },
-      "financial_records": {
-        "currency": "INR_LAKHS",
-        "turnover_fy_2021_22": 0.0,
-        "turnover_fy_2022_23": 0.0,
-        "turnover_fy_2023_24": 0.0,
-        "average_annual_turnover": 0.0
+      "documents": {
+        "statutory": {
+          "udyam_certificate": {
+            "doc_id": "DOC-UDYAM-005",
+            "number": "UDYAM-HR-05-0067890",
+            "issue_date": "2024-02-14",
+            "validity": "PERMANENT",
+            "enterprise_type": "Micro",
+            "source": "DIGILOCKER",
+            "verified": true
+          },
+          "gst_registration": {
+            "doc_id": "DOC-GST-005",
+            "gstin": "06EEEPE7890E1ZF",
+            "status": "Active",
+            "filing_status_3b": "Regular",
+            "source": "GSTN_API",
+            "verified": true
+          },
+          "pan_card": {
+            "doc_id": "DOC-PAN-005",
+            "pan": "EEEPE7890E",
+            "status": "VALID",
+            "verified": true
+          },
+          "mca_incorporation": {
+            "doc_id": "DOC-MCA-005",
+            "cin": "AAR-8765",
+            "status": "Active",
+            "inc_date": "2024-01-20",
+            "verified": true
+          },
+          "itr_v_3years": [
+            { "ay": "2025-26", "filed_date": "2025-07-18", "acknowledged": true }
+          ],
+          "epfo_esic_clearance": null
+        },
+        "financial": {
+          "audited_turnover_certificate": {
+            "ca_membership_num": "654321",
+            "udin": "25654321DDDDDD5678",
+            "fy_2023_24_inr_cr": 0.0,
+            "fy_2024_25_inr_cr": 0.35,
+            "fy_2025_26_inr_cr": 0.82,
+            "meets_avg_threshold": false
+          },
+          "emd_proof": {
+            "type": "EXEMPTION_STARTUP",
+            "exemption_claimed": true,
+            "claimed_basis": "DPIIT",
+            "exemption_valid": true,
+            "bg_details": null
+          }
+        },
+        "eligibility_exemption": {
+          "dpiit_startup": {
+            "cert_num": "DIPP98765",
+            "recognition_date": "2024-03-01",
+            "valid_until": "2034-02-28",
+            "industry": "Office Automation & Supplies",
+            "turnover_exemption_eligible": true,
+            "experience_exemption_eligible": true,
+            "verified": true
+          },
+          "nsic_certificate": null,
+          "make_in_india_declaration": {
+            "local_content_percentage": 50.0,
+            "class_type": "Class-1 Local Supplier",
+            "location_of_value_add": "Gurugram, Haryana"
+          }
+        },
+        "technical": {
+          "oem_authorization": {
+            "oem_name": "DeskMate Stationery & Systems",
+            "auth_code": "AUTH-DMS-8871",
+            "valid_until": "2027-01-31",
+            "verified": true
+          },
+          "bis_iso_certificates": [
+            { "standard": "ISO 9001:2015", "valid_until": "2027-09-12", "accreditation": "NABCB" }
+          ],
+          "tech_spec_compliance_sheet": { "all_deviations_mitigated": true, "matches_tender_specs": true },
+          "past_performance_proofs": []
+        },
+        "compliance_background": {
+          "non_blacklisting_declaration": { "self_declared_clean": true, "notarized": true },
+          "central_blacklist_match": false,
+          "digilocker_linked": true
+        }
+      }
+    },
+    {
+      "bidder_id": "BID-006",
+      "company_name": "Zenith Defence Systems Ltd",
+      "profile": {
+        "pan": "ZZZPZ9999Z",
+        "gstin": "33ZZZPZ9999Z1ZK",
+        "cin": "L32100TN2005PLC044321",
+        "category": "Large",
+        "is_startup": false,
+        "is_mse": false
       },
-      "past_experience": {
-        "years_in_business": 1,
-        "completed_govt_orders": 0,
-        "total_order_value_lakhs": 0.0
+      "documents": {
+        "statutory": {
+          "udyam_certificate": null,
+          "gst_registration": {
+            "doc_id": "DOC-GST-006",
+            "gstin": "33ZZZPZ9999Z1ZK",
+            "status": "Active",
+            "filing_status_3b": "Regular",
+            "source": "GSTN_API",
+            "verified": true
+          },
+          "pan_card": {
+            "doc_id": "DOC-PAN-006",
+            "pan": "ZZZPZ9999Z",
+            "status": "VALID",
+            "verified": true
+          },
+          "mca_incorporation": {
+            "doc_id": "DOC-MCA-006",
+            "cin": "L32100TN2005PLC044321",
+            "status": "Active",
+            "inc_date": "2005-04-11",
+            "verified": true
+          },
+          "itr_v_3years": [
+            { "ay": "2024-25", "filed_date": "2024-09-28", "acknowledged": true },
+            { "ay": "2023-24", "filed_date": "2023-09-29", "acknowledged": true },
+            { "ay": "2022-23", "filed_date": "2022-09-30", "acknowledged": true }
+          ],
+          "epfo_esic_clearance": {
+            "epfo_code": "TN/MAS/0099887/000",
+            "esic_code": "51000998870000404",
+            "default_flag": false,
+            "last_paid_month": "2026-07"
+          }
+        },
+        "financial": {
+          "audited_turnover_certificate": {
+            "ca_membership_num": "100234",
+            "udin": "25100234EEEEEE9988",
+            "fy_2023_24_inr_cr": 240.0,
+            "fy_2024_25_inr_cr": 285.5,
+            "fy_2025_26_inr_cr": 310.0,
+            "meets_avg_threshold": true
+          },
+          "emd_proof": {
+            "type": "BANK_GUARANTEE",
+            "exemption_claimed": false,
+            "claimed_basis": null,
+            "exemption_valid": null,
+            "bg_details": {
+              "bank_name": "State Bank of India",
+              "bg_number": "SBI-BG-2026-88741",
+              "amount_inr": 2500000,
+              "valid_until": "2027-03-31",
+              "sfms_verified": true
+            }
+          }
+        },
+        "eligibility_exemption": {
+          "dpiit_startup": null,
+          "nsic_certificate": null,
+          "make_in_india_declaration": {
+            "local_content_percentage": 58.0,
+            "class_type": "Class-1 Local Supplier",
+            "location_of_value_add": "Avadi, Chennai"
+          }
+        },
+        "technical": {
+          "oem_authorization": {
+            "oem_name": "Direct Manufacturer (OEM)",
+            "auth_code": "SELF_MANUFACTURER",
+            "valid_until": "PERMANENT",
+            "verified": true
+          },
+          "bis_iso_certificates": [
+            { "standard": "ISO 9001:2015", "valid_until": "2027-10-15", "accreditation": "NABCB" },
+            { "standard": "AS9100D", "valid_until": "2028-04-12", "accreditation": "IAQG" }
+          ],
+          "tech_spec_compliance_sheet": { "all_deviations_mitigated": true, "matches_tender_specs": true },
+          "past_performance_proofs": [
+            { "client": "Ministry of Defence", "order_val_cr": 45.0, "status": "COMPLETED", "completion_cert_attached": true },
+            { "client": "DRDO", "order_val_cr": 18.5, "status": "COMPLETED", "completion_cert_attached": true }
+          ]
+        },
+        "compliance_background": {
+          "non_blacklisting_declaration": { "self_declared_clean": true, "notarized": true },
+          "central_blacklist_match": false,
+          "digilocker_linked": false
+        }
+      }
+    },
+    {
+      "bidder_id": "BID-007",
+      "company_name": "Kavya Textiles Pvt Ltd",
+      "profile": {
+        "pan": "KKKPK1122K",
+        "gstin": "24KKKPK1122K1ZL",
+        "cin": "U17110GJ2016PTC090123",
+        "category": "Small",
+        "is_startup": false,
+        "is_mse": true
       },
-      "debarment_status": {
-        "is_blacklisted": true,
-        "debarment_period": "2024-2027",
-        "banned_by": "Government e-Marketplace (GeM) Incident Management Cell",
-        "reason": "Submission of forged bank guarantee and counterfeit certifications"
+      "documents": {
+        "statutory": {
+          "udyam_certificate": {
+            "doc_id": "DOC-UDYAM-007",
+            "number": "UDYAM-GJ-04-0078912",
+            "issue_date": "2021-06-18",
+            "validity": "PERMANENT",
+            "enterprise_type": "Small",
+            "source": "DIGILOCKER",
+            "verified": true
+          },
+          "gst_registration": {
+            "doc_id": "DOC-GST-007",
+            "gstin": "24KKKPK1122K1ZL",
+            "status": "Active",
+            "filing_status_3b": "Regular",
+            "source": "DIGILOCKER",
+            "verified": true
+          },
+          "pan_card": {
+            "doc_id": "DOC-PAN-007",
+            "pan": "KKKPK1122K",
+            "status": "VALID",
+            "source": "DIGILOCKER",
+            "verified": true
+          },
+          "mca_incorporation": {
+            "doc_id": "DOC-MCA-007",
+            "cin": "U17110GJ2016PTC090123",
+            "status": "Active",
+            "inc_date": "2016-03-24",
+            "verified": true
+          },
+          "itr_v_3years": [
+            { "ay": "2024-25", "filed_date": "2024-07-22", "acknowledged": true },
+            { "ay": "2023-24", "filed_date": "2023-07-19", "acknowledged": true },
+            { "ay": "2022-23", "filed_date": "2022-07-25", "acknowledged": true }
+          ],
+          "epfo_esic_clearance": {
+            "epfo_code": "GJ/AHD/0034561/000",
+            "esic_code": "37000345610000505",
+            "default_flag": false,
+            "last_paid_month": "2026-07"
+          }
+        },
+        "financial": {
+          "audited_turnover_certificate": {
+            "ca_membership_num": "334455",
+            "udin": "25334455FFFFFF1122",
+            "fy_2023_24_inr_cr": 7.2,
+            "fy_2024_25_inr_cr": 7.8,
+            "fy_2025_26_inr_cr": 8.5,
+            "meets_avg_threshold": true
+          },
+          "emd_proof": {
+            "type": "EXEMPTION_NSIC",
+            "exemption_claimed": true,
+            "claimed_basis": "NSIC",
+            "exemption_valid": true,
+            "bg_details": null
+          }
+        },
+        "eligibility_exemption": {
+          "dpiit_startup": null,
+          "nsic_certificate": {
+            "cert_num": "NSIC/AHD/GP/2022/4512",
+            "valid_until": "2027-05-15",
+            "monetary_limit_cr": 10.0,
+            "stores_specified": "Uniform Fabrics & Protective Clothing",
+            "verified": true
+          },
+          "make_in_india_declaration": {
+            "local_content_percentage": 94.0,
+            "class_type": "Class-1 Local Supplier",
+            "location_of_value_add": "Ahmedabad, Gujarat"
+          }
+        },
+        "technical": {
+          "oem_authorization": {
+            "oem_name": "Direct Manufacturer (OEM)",
+            "auth_code": "SELF_MANUFACTURER",
+            "valid_until": "PERMANENT",
+            "verified": true
+          },
+          "bis_iso_certificates": [
+            { "standard": "IS 15748:2007 (BIS)", "valid_until": "2027-08-19", "accreditation": "BIS" },
+            { "standard": "ISO 9001:2015", "valid_until": "2028-02-14", "accreditation": "NABCB" }
+          ],
+          "tech_spec_compliance_sheet": { "all_deviations_mitigated": true, "matches_tender_specs": true },
+          "past_performance_proofs": [
+            { "client": "CRPF Training Wing", "order_val_cr": 2.1, "status": "COMPLETED", "completion_cert_attached": true }
+          ]
+        },
+        "compliance_background": {
+          "non_blacklisting_declaration": { "self_declared_clean": true, "notarized": true },
+          "central_blacklist_match": false,
+          "digilocker_linked": true
+        }
+      }
+    },
+    {
+      "bidder_id": "BID-008",
+      "company_name": "Omega Pharma Distributors",
+      "profile": {
+        "pan": "OOOPO3344O",
+        "gstin": "27OOOPO3344O1ZQ",
+        "cin": "U24230MH2019PTC345678",
+        "category": "Small",
+        "is_startup": false,
+        "is_mse": true
+      },
+      "documents": {
+        "statutory": {
+          "udyam_certificate": {
+            "doc_id": "DOC-UDYAM-008",
+            "number": "UDYAM-MH-08-0089123",
+            "issue_date": "2021-09-05",
+            "validity": "PERMANENT",
+            "enterprise_type": "Small",
+            "source": "MANUAL_UPLOAD",
+            "verified": true
+          },
+          "gst_registration": {
+            "doc_id": "DOC-GST-008",
+            "gstin": "27OOOPO3344O1ZQ",
+            "status": "Cancelled",
+            "cancellation_date": "2026-01-15",
+            "filing_status_3b": "Inactive",
+            "source": "GSTN_API",
+            "verified": false
+          },
+          "pan_card": {
+            "doc_id": "DOC-PAN-008",
+            "pan": "OOOPO3344O",
+            "status": "VALID",
+            "verified": true
+          },
+          "mca_incorporation": {
+            "doc_id": "DOC-MCA-008",
+            "cin": "U24230MH2019PTC345678",
+            "status": "Active",
+            "inc_date": "2019-10-10",
+            "verified": true
+          },
+          "itr_v_3years": [
+            { "ay": "2024-25", "filed_date": "2024-07-29", "acknowledged": true },
+            { "ay": "2023-24", "filed_date": "2023-07-31", "acknowledged": true },
+            { "ay": "2022-23", "filed_date": "2022-07-20", "acknowledged": true }
+          ],
+          "epfo_esic_clearance": {
+            "epfo_code": "MH/PUN/0067891/000",
+            "esic_code": "31000678910000606",
+            "default_flag": true,
+            "last_paid_month": "2025-11"
+          }
+        },
+        "financial": {
+          "audited_turnover_certificate": {
+            "ca_membership_num": "445566",
+            "udin": "25445566GGGGGG3344",
+            "fy_2023_24_inr_cr": 6.8,
+            "fy_2024_25_inr_cr": 5.4,
+            "fy_2025_26_inr_cr": 4.1,
+            "meets_avg_threshold": true
+          },
+          "emd_proof": {
+            "type": "EXEMPTION_MSE",
+            "exemption_claimed": true,
+            "claimed_basis": "UDYAM",
+            "exemption_valid": true,
+            "bg_details": null
+          }
+        },
+        "eligibility_exemption": {
+          "dpiit_startup": null,
+          "nsic_certificate": null,
+          "make_in_india_declaration": {
+            "local_content_percentage": 42.0,
+            "class_type": "Class-2 Local Supplier",
+            "location_of_value_add": "Nagpur, Maharashtra"
+          }
+        },
+        "technical": {
+          "oem_authorization": {
+            "oem_name": "Apex Formulations Ltd",
+            "auth_code": "AUTH-AFL-993",
+            "valid_until": "2026-12-31",
+            "verified": true
+          },
+          "bis_iso_certificates": [
+            { "standard": "WHO-GMP", "valid_until": "2026-08-30", "accreditation": "FDA/CDSCO" }
+          ],
+          "tech_spec_compliance_sheet": { "all_deviations_mitigated": false, "matches_tender_specs": false },
+          "past_performance_proofs": [
+            { "client": "Municipal Hospital Thane", "order_val_cr": 0.45, "status": "COMPLETED", "completion_cert_attached": true }
+          ]
+        },
+        "compliance_background": {
+          "non_blacklisting_declaration": { "self_declared_clean": true, "notarized": true },
+          "central_blacklist_match": false,
+          "digilocker_linked": false
+        }
+      }
+    },
+    {
+      "bidder_id": "BID-009",
+      "company_name": "Nova Renewable Energy Pvt Ltd",
+      "profile": {
+        "pan": "NNNPN5566N",
+        "gstin": "08NNNPN5566N1ZR",
+        "cin": "U40106RJ2023PTC085234",
+        "category": "Micro",
+        "is_startup": true,
+        "is_mse": true
+      },
+      "documents": {
+        "statutory": {
+          "udyam_certificate": {
+            "doc_id": "DOC-UDYAM-009",
+            "number": "UDYAM-RJ-02-0091234",
+            "issue_date": "2023-04-12",
+            "validity": "PERMANENT",
+            "enterprise_type": "Micro",
+            "source": "DIGILOCKER",
+            "verified": true
+          },
+          "gst_registration": {
+            "doc_id": "DOC-GST-009",
+            "gstin": "08NNNPN5566N1ZR",
+            "status": "Active",
+            "filing_status_3b": "Regular",
+            "source": "DIGILOCKER",
+            "verified": true
+          },
+          "pan_card": {
+            "doc_id": "DOC-PAN-009",
+            "pan": "NNNPN5566N",
+            "status": "VALID",
+            "source": "DIGILOCKER",
+            "verified": true
+          },
+          "mca_incorporation": {
+            "doc_id": "DOC-MCA-009",
+            "cin": "U40106RJ2023PTC085234",
+            "status": "Active",
+            "inc_date": "2023-02-08",
+            "verified": true
+          },
+          "itr_v_3years": [
+            { "ay": "2025-26", "filed_date": "2025-07-24", "acknowledged": true },
+            { "ay": "2024-25", "filed_date": "2024-07-28", "acknowledged": true }
+          ],
+          "epfo_esic_clearance": {
+            "epfo_code": "RJ/JAI/0011223/000",
+            "esic_code": "15000112230000707",
+            "default_flag": false,
+            "last_paid_month": "2026-07"
+          }
+        },
+        "financial": {
+          "audited_turnover_certificate": {
+            "ca_membership_num": "556677",
+            "udin": "25556677HHHHHH5566",
+            "fy_2023_24_inr_cr": 0.4,
+            "fy_2024_25_inr_cr": 1.2,
+            "fy_2025_26_inr_cr": 2.1,
+            "meets_avg_threshold": false
+          },
+          "emd_proof": {
+            "type": "EXEMPTION_STARTUP",
+            "exemption_claimed": true,
+            "claimed_basis": "DPIIT",
+            "exemption_valid": true,
+            "bg_details": null
+          }
+        },
+        "eligibility_exemption": {
+          "dpiit_startup": {
+            "cert_num": "DIPP11223",
+            "recognition_date": "2023-05-10",
+            "valid_until": "2033-05-09",
+            "industry": "Renewable Energy & Solar",
+            "turnover_exemption_eligible": true,
+            "experience_exemption_eligible": true,
+            "verified": true
+          },
+          "nsic_certificate": null,
+          "make_in_india_declaration": {
+            "local_content_percentage": 78.0,
+            "class_type": "Class-1 Local Supplier",
+            "location_of_value_add": "Jaipur, Rajasthan"
+          }
+        },
+        "technical": {
+          "oem_authorization": {
+            "oem_name": "Direct Manufacturer (OEM)",
+            "auth_code": "SELF_MANUFACTURER",
+            "valid_until": "PERMANENT",
+            "verified": true
+          },
+          "bis_iso_certificates": [
+            { "standard": "IS 14286 (BIS Solar PV)", "valid_until": "2027-11-20", "accreditation": "BIS" },
+            { "standard": "ISO 9001:2015", "valid_until": "2028-03-30", "accreditation": "NABCB" }
+          ],
+          "tech_spec_compliance_sheet": { "all_deviations_mitigated": true, "matches_tender_specs": true },
+          "past_performance_proofs": []
+        },
+        "compliance_background": {
+          "non_blacklisting_declaration": { "self_declared_clean": true, "notarized": true },
+          "central_blacklist_match": false,
+          "digilocker_linked": true
+        }
+      }
+    },
+    {
+      "bidder_id": "BID-010",
+      "company_name": "Sundar Facility Management Services",
+      "profile": {
+        "pan": "SSSS57788S",
+        "gstin": "36SSSS57788S1ZU",
+        "cin": null,
+        "category": "Micro",
+        "is_startup": false,
+        "is_mse": true
+      },
+      "documents": {
+        "statutory": {
+          "udyam_certificate": {
+            "doc_id": "DOC-UDYAM-010",
+            "number": "UDYAM-TS-09-0019283",
+            "issue_date": "2020-07-15",
+            "validity": "EXPIRED",
+            "expiry_date": "2022-12-31",
+            "expiry_reason": "Annual re-declaration overdue since 31-Dec-2022 under MSME Notification S.O. 2119(E)",
+            "enterprise_type": "Micro",
+            "source": "MANUAL_UPLOAD",
+            "verified": false
+          },
+          "gst_registration": {
+            "doc_id": "DOC-GST-010",
+            "gstin": "36SSSS57788S1ZU",
+            "status": "Active",
+            "filing_status_3b": "Late_Filer",
+            "source": "GSTN_API",
+            "verified": true
+          },
+          "pan_card": {
+            "doc_id": "DOC-PAN-010",
+            "pan": "SSSS57788S",
+            "status": "VALID",
+            "verified": true
+          },
+          "mca_incorporation": null,
+          "itr_v_3years": [
+            { "ay": "2024-25", "filed_date": null, "acknowledged": false },
+            { "ay": "2023-24", "filed_date": "2023-11-10", "acknowledged": true },
+            { "ay": "2022-23", "filed_date": "2022-10-15", "acknowledged": true }
+          ],
+          "epfo_esic_clearance": {
+            "epfo_code": "TS/HYD/0077881/000",
+            "esic_code": "52000778810000808",
+            "default_flag": true,
+            "last_paid_month": "2026-03"
+          }
+        },
+        "financial": {
+          "audited_turnover_certificate": {
+            "ca_membership_num": "778899",
+            "udin": "25778899JJJJJJ7788",
+            "fy_2023_24_inr_cr": 0.85,
+            "fy_2024_25_inr_cr": 0.92,
+            "fy_2025_26_inr_cr": 1.05,
+            "meets_avg_threshold": false
+          },
+          "emd_proof": {
+            "type": "EXEMPTION_CLAIMED_INVALID",
+            "exemption_claimed": true,
+            "claimed_basis": "UDYAM",
+            "exemption_valid": false,
+            "bg_details": null
+          }
+        },
+        "eligibility_exemption": {
+          "dpiit_startup": null,
+          "nsic_certificate": null,
+          "make_in_india_declaration": null
+        },
+        "technical": {
+          "oem_authorization": null,
+          "bis_iso_certificates": [],
+          "tech_spec_compliance_sheet": { "all_deviations_mitigated": false, "matches_tender_specs": false },
+          "past_performance_proofs": []
+        },
+        "compliance_background": {
+          "non_blacklisting_declaration": { "self_declared_clean": false, "notarized": false },
+          "central_blacklist_match": false,
+          "digilocker_linked": false
+        }
       }
     }
   ]

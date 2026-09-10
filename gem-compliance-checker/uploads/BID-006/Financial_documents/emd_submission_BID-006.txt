@@ -1,0 +1,8 @@
+BANK GUARANTEE FOR EARNEST MONEY DEPOSIT (EMD)
+------------------------------------------------------------------
+Issuing Bank: State Bank of India
+Bank Guarantee Number (BG No): SBI-BG-2026-88741
+Beneficiary: Government e-Marketplace / Procuring Entity
+Amount: INR 2,500,000 (Twenty-Five Lakhs Only)
+Valid Until: 2027-03-31
+SFMS Message Confirmation: VERIFIED ON SFMS PORTAL

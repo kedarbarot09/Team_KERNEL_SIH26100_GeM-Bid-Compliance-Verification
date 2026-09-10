@@ -1,0 +1,20 @@
+{
+  "status": "success",
+  "source": "digilocker",
+  "issuer_verified": true,
+  "issuer": "Goods and Services Tax Network (GSTN)",
+  "issuer_id": "in.gov.gst",
+  "document_type": "GST Registration Certificate",
+  "uri": "in.gov.gst-27AABCA1234F1Z5",
+  "date_of_issue": "2018-05-10",
+  "data": {
+    "gstin": "27AABCA1234F1Z5",
+    "legal_name": "ALPHA TECH SOLUTIONS PRIVATE LIMITED",
+    "trade_name": "Alpha Tech Solutions",
+    "status": "ACTIVE",
+    "state_code": "27",
+    "state_name": "Maharashtra",
+    "filing_status": "UP TO DATE"
+  },
+  "raw_text": "GOVERNMENT OF INDIA - GST REGISTRATION CERTIFICATE\nDigiLocker Verified Credential (URI: in.gov.gst-27AABCA1234F1Z5)\nRegistration Number (GSTIN): 27AABCA1234F1Z5\nLegal Name: ALPHA TECH SOLUTIONS PRIVATE LIMITED\nTrade Name: Alpha Tech Solutions\nStatus: ACTIVE\nFiling Status: UP TO DATE\nIssuer Verified: True"
+}

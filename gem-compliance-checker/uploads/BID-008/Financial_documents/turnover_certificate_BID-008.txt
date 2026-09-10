@@ -1,0 +1,11 @@
+CHARTERED ACCOUNTANTS AUDITED TURNOVER CERTIFICATE
+------------------------------------------------------------------
+Client Name: Omega Pharma Distributors
+CA Membership Number: 445566
+Unique Document Identification Number (UDIN): 25445566GGGGGG3344
+Audited Turnover Records:
+  - Financial Year 2023-24: INR 6.80 Crores (680.00 Lakhs)
+  - Financial Year 2024-25: INR 5.40 Crores (540.00 Lakhs)
+  - Financial Year 2025-26: INR 4.10 Crores (410.00 Lakhs)
+Average Annual Turnover (Last 3 FYs): INR 5.43 Crores (543.33 Lakhs)
+

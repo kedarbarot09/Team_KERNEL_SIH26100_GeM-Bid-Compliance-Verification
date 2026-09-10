@@ -1,0 +1,12 @@
+CHARTERED ACCOUNTANTS AUDITED TURNOVER CERTIFICATE
+------------------------------------------------------------------
+Client Name: Epsilon Office Supplies LLP
+CA Membership Number: 654321
+Unique Document Identification Number (UDIN): 25654321DDDDDD5678
+Audited Turnover Records:
+  - Financial Year 2023-24: INR 0.00 Crores (0.00 Lakhs)
+  - Financial Year 2024-25: INR 0.35 Crores (35.00 Lakhs)
+  - Financial Year 2025-26: INR 0.82 Crores (82.00 Lakhs)
+Average Annual Turnover (Last 3 FYs): INR 0.39 Crores (39.00 Lakhs)
+
+[STARTUP RELAXATION CLAIM]: Vendor holds valid DPIIT Startup Certificate #DIPP98765 and requests turnover criteria waiver as per GeM/DPIIT procurement guidelines.
